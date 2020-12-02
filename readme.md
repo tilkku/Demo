@@ -1,4 +1,4 @@
-### Koronabotti -Telegram bot
+# Koronabotti -Telegram bot
 
 This is Telegram Bot to offer covid-19 information from THL database as a reply to certain messages.
 The bot is started by "python bot.py" and runs until we press Ctrl-C on the command line.
