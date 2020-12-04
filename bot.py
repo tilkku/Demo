@@ -104,9 +104,8 @@ def main():
     dp.add_error_handler(virhe)
 
     # Start the Bot
-    #updater.start_polling()
     updater.start_webhook(listen="0.0.0.0", port=int(PORT), url_path=API_KORONABOTTI_TOKEN)
-    updater.bot.setWebhook('https://yourherokuappname.herokuapp.com/' + API_KORONABOTTI_TOKEN)
+    updater.bot.setWebhook('https://fathomless-retreat-17737.herokuapp.com/' + API_KORONABOTTI_TOKEN)
 
     # Run the bot until you press Ctrl-C or the process receives SIGINT,
     # SIGTERM or SIGABRT. This should be used most of the time, since
