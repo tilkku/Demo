@@ -19,6 +19,7 @@ import restapi
 import logging
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from decouple import config
+import os
 
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -26,6 +27,10 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 logger = logging.getLogger(__name__)
 
+# Token as environment variable
+API_KORONABOTTI_TOKEN = config('KORONABOTTI_TOKEN')
+# Port number to listen for the webhook
+PORT = int(os.environ.get('PORT', 5000))
 
 # Define a few command handlers. These usually take the two arguments update and
 # context. Error handlers also receive the raised TelegramError object in error.
@@ -84,7 +89,6 @@ def main():
     # Create the Updater and pass it your bot's token.
     # Make sure to set use_context=True to use the new context based callbacks
     # Post version 12 this will no longer be necessary
-    API_KORONABOTTI_TOKEN = config('KORONABOTTI_TOKEN')
     updater = Updater(API_KORONABOTTI_TOKEN, use_context=True)
 
     # Get the dispatcher to register handlers
@@ -100,7 +104,9 @@ def main():
     dp.add_error_handler(virhe)
 
     # Start the Bot
-    updater.start_polling()
+    #updater.start_polling()
+    updater.start_webhook(listen="0.0.0.0", port=int(PORT), url_path=API_KORONABOTTI_TOKEN)
+    updater.bot.setWebhook('https://yourherokuappname.herokuapp.com/' + API_KORONABOTTI_TOKEN)
 
     # Run the bot until you press Ctrl-C or the process receives SIGINT,
     # SIGTERM or SIGABRT. This should be used most of the time, since
