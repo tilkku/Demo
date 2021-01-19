@@ -51,7 +51,11 @@ def vastaus(update, context):
         areaArray=restapi.idAreas
     elif update.message.text == "k":
         areaArray=restapi.idAreas
+    elif update.message.text == "K":
+        areaArray=restapi.idAreas
     elif update.message.text == "vs":
+        areaArray=restapi.idVS
+    elif update.message.text == "Vs":
         areaArray=restapi.idVS
     elif update.message.text == "tku":
         areaArray=restapi.idVS
